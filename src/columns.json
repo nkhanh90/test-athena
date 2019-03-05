@@ -1,0 +1,45 @@
+[
+  {
+    "label": "",
+    "field": "id",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "commerce",
+    "field": "tco_libelle",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "jour de fermeture",
+    "field": "dea_fermeture",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "adresse",
+    "field": "dea_numero_rue_livraison_dea_rue_livraison",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "code postal",
+    "field": "code_postal",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "ville",
+    "field": "ville",
+    "sort": "asc",
+    "width": 150
+  },
+  {
+    "label": "coord_geo",
+    "field": "coord_geo",
+    "sort": "asc",
+    "width": 150
+  }
+
+]
