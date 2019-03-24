@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 export default initialValue => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({
+    article: false,
+    pagination: false
+  });
 
   return {
     loading,

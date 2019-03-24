@@ -2,32 +2,29 @@ import { useState } from "react";
 
 export default initialValue => {
   const [articles, setArticles] = useState({
-    hits: [],
-    nbHits: 0,  
+    hits: []
   });
 
   return {
     articles,
-    applySetResult: (result) => (prevState) => {
+    applySetResult: (result) => {
       const newArticles = {
-        hits: result.hits,
-        nbHits: result.nbHits,
-        hitsPerPage: result.hitsPerPage
+        hits: result.hits
       }
       setArticles(newArticles);
     },
-    applyUpdateResult: (result) => (prevState) => ({
-      hits: [...prevState.hits, ...result.hits],
-      currentPage: result.page,
-    }),
-    onClick: event => {
+    // applyUpdateResult: (result) => (prevState) => ({
+    //   hits: [...prevState.hits, ...result.hits],
+    //   currentPage: result.page,
+    // }),
+    // onClick: event => {
 
-    },
-    onMoveLeft: event => {
+    // },
+    // onMoveLeft: event => {
 
-    },
-    onMoveRight: event => {
+    // },
+    // onMoveRight: event => {
 
-    },
+    // },
   };
 };

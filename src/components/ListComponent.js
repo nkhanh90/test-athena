@@ -1,41 +1,12 @@
 import React from 'react';
-import { compose } from 'recompose';
+import ConditionalRenderingFn from './ConditionalRenderComponent';
 
-const isLoadingConditionFn = props => props.loading;
-const nullConditionFn = props => props.articles === null;
-const isEmptyConditionFn = props => Object.keys(props.articles).length === 0;
-
-const EmptyMessage = () => (
-  <div>
-    <p className="empty-message">You have no Articles.</p>
-  </div>
-);
-
-const LoadingIndicator = () => (
-  <div>
-    <p>Loading Articles ...</p>
-  </div>
-);
-
-const withMaybe = conditionalRenderingFn => Component => props =>
-  conditionalRenderingFn(props) ? null : <Component {...props} />;
-
-const withEither = (conditionalRenderingFn, EitherComponent) => Component => props => {
-  return conditionalRenderingFn(props) ? (<EitherComponent />) : (<Component {...props} />);
-}
-  
-
-const withConditionalRenderings = compose(
-  withEither(isLoadingConditionFn, LoadingIndicator),
-  withMaybe(nullConditionFn, EmptyMessage),
-  withEither(isEmptyConditionFn, EmptyMessage),
-);
-
-const ArticleList = ({ articles, loading }) => {
+const ArticleList = ({ data, loading }) => {
+  console.log(data)
   return (
     <div>
       <div className="list">
-        {articles.map(item => <div className="list-row" key={item.objectID}>
+        {data.hits.map(item => <div className="list-row" key={item.objectID}>
           <a href={item.url}>{item.title}</a>
         </div>)}
       </div>
@@ -62,4 +33,4 @@ const ArticleList = ({ articles, loading }) => {
   );
 }
 
-export default withConditionalRenderings(ArticleList)
+export default ConditionalRenderingFn(ArticleList)

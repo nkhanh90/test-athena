@@ -5,6 +5,7 @@ const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
 
 const range = (from, to, step = 1) => {
+  console.log(`from: ${from} , to: ${to}, step: ${step}`)
   let i = from;
   const range = [];
 
@@ -12,7 +13,7 @@ const range = (from, to, step = 1) => {
     range.push(i);
     i += step;
   }
-
+  console.log(`range: ${range}`)
   return range;
 };
 
@@ -24,11 +25,11 @@ class Pagination extends Component {
     this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
     this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
 
-    this.pageNeighbours =
-      typeof pageNeighbours === "number"
-        ? Math.max(0, Math.min(pageNeighbours, 2))
-        : 0;
-
+    this.pageNeighbours = pageNeighbours;
+      // typeof pageNeighbours === "number"
+      //   ? Math.max(0, Math.min(pageNeighbours, 2))
+      //   : 0;
+    // console.log(this.pageNeighbours); debugger
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
 
     this.state = { currentPage: 1 };
@@ -76,10 +77,10 @@ class Pagination extends Component {
 
     const totalNumbers = this.pageNeighbours * 2 + 3;
     const totalBlocks = totalNumbers + 2;
-  
+    console.log(`totalPage: ${totalPages} && totalBlocks: ${totalBlocks}`)
     if (totalPages > totalBlocks) {
       let pages = [];
-
+      console.log(pageNeighbours)
       const leftBound = currentPage - pageNeighbours;
       const rightBound = currentPage + pageNeighbours;
       const beforeLastPage = totalPages - 1;
@@ -88,7 +89,6 @@ class Pagination extends Component {
       const endPage = rightBound < beforeLastPage ? rightBound : beforeLastPage;
 
       pages = range(startPage, endPage);
-
       const pagesCount = pages.length;
       const singleSpillOffset = totalNumbers - pagesCount - 1;
 
@@ -98,6 +98,7 @@ class Pagination extends Component {
       const leftSpillPage = LEFT_PAGE;
       const rightSpillPage = RIGHT_PAGE;
 
+      console.log(`leftBound: ${leftBound}, rightBound: ${rightBound}, startPage: ${startPage}, endPage: ${endPage}, singleSpillOffset: ${singleSpillOffset}, pagesCount: ${pagesCount}`)
       if (leftSpill && !rightSpill) {
         const extraPages = range(startPage - singleSpillOffset, startPage - 1);
         pages = [leftSpillPage, ...extraPages, ...pages];
